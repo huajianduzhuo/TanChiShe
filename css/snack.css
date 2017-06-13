@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+#head {
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#start {
+    width: 150px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font: 18px bold;
+}
+
+#main {
+    width: 304px;
+    height: 304px;
+    border: 2px solid slategrey;
+    margin: 0 auto;
+    position: relative;
+    top: 50px;
+    overflow: hidden;
+}
+
+.food {
+    width: 10px;
+    height: 10px;
+    background-color: dimgrey;
+    position: absolute;
+}
+
+.snack {
+    width: 10px;
+    height: 10px;
+    background-color: palevioletred;
+    border: 1px solid lightslategrey;
+    position: absolute;
+}
+
+.snack_head {
+    background-color: black;
+}
