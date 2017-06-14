@@ -5,8 +5,10 @@
     TODO 蛇移动总方法
  */
 var t;
+var lastSnack = new SNACK();
+var delay = 700;
+
 function move() {
-    var lastSnack = new SNACK();
     $.each(snackArr, function (index, elem) {
         if(index == 0){
             lastSnack.direction = elem.direction;
@@ -19,51 +21,55 @@ function move() {
         }else {
             if(checkSnackDie(elem)){
                 alert('game over!!!');
+                status = 'die';
                 clearTimeout(t);
                 return false;
             }else {
                 if(checkIsEat(elem)){
-                    var newSnack = $('<div name="snack" class="snack"></div>');
-                    var newSNACK = new SNACK(newSnack,lastSnack.leftCoor,lastSnack.topCoor,lastSnack.direction);
-                    snackArr.unshift(newSNACK);
-                    newSnack.css({
-                        left: lastSnack.leftCoor,
-                        top: lastSnack.topCoor
-                    });
-                    $('#main').append(newSnack);
+                    snackAdd();
                     showFood();
                 }
-                t = setTimeout(move, 500);
             }
+            if(delay >= 300){
+                delay = delay - 100 * parseInt(snackArr.length / 10);
+            }
+            t = setTimeout(move,delay);
         }
     });
 }
 
 $(document).keydown(function (event) {
+    if(status == 'die'){
+        return false;
+    }
     switch (event.keyCode){
         case 37://left
-            if(snackArr[snackArr.length-1].direction == 'right'){
+            if(snackArr[snackArr.length-1].direction == 'right' || snackArr[snackArr.length-2].direction == 'right'){
                 return false;
             }
             snackArr[snackArr.length-1].direction = 'left';
             break;
         case 38://top
-            if(snackArr[snackArr.length-1].direction == 'bottom'){
+            if(snackArr[snackArr.length-1].direction == 'bottom' || snackArr[snackArr.length-2].direction == 'bottom'){
                 return false;
             }
             snackArr[snackArr.length-1].direction = 'top';
             break;
         case 39://right
-            if(snackArr[snackArr.length-1].direction == 'left'){
+            if(snackArr[snackArr.length-1].direction == 'left' || snackArr[snackArr.length-2].direction == 'left'){
                 return false;
             }
             snackArr[snackArr.length-1].direction = 'right';
             break;
         case 40://bottom
-            if(snackArr[snackArr.length-1].direction == 'top'){
+            if(snackArr[snackArr.length-1].direction == 'top' || snackArr[snackArr.length-2].direction == 'top'){
                 return false;
             }
             snackArr[snackArr.length-1].direction = 'bottom';
             break;
+    }
+    if([37,38,39,40].indexOf(event.keyCode) >= 0 && status == 'init'){
+        status = 'start';
+        move();
     }
 });

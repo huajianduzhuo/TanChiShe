@@ -7,20 +7,31 @@
  */
 var snackArr = [];
 var food;
+var status = 'init';
 /*
     TODO 初始化游戏
  */
 $(function () {
+    initGame();
+    $('#start').click(function () {
+        if(t){
+            clearTimeout(t);
+        }
+        initGame();
+        status = 'init';
+    });
+});
+
+function initGame() {
+    $('#main').html('<div id="food" class="food"></div><div id="snack_head" name="snack" class="snack snack_head"></div><div id="snack_body" name="snack" class="snack"></div>');
     food = showFood();
+    snackArr = [];
     showSnack();
     while (checkCoorRepeat(food, snackArr) || (!checkSnackLive())){
         snackArr = new Array(0);
         showSnack();
     }
-    $('#start').click(function () {
-        move();
-    });
-});
+}
 
 function showFood() {
     var food = $('#food');
