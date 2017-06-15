@@ -137,19 +137,19 @@ function snackAdd() {
     TODO 更新分数
  */
 function scoreUpdate() {
-    if(score <= 100){
+    if(score < 100){
         score += 10;
-    }else if(score <= 250){
+    }else if(score < 250){
         score += 15;
-    }else if(score <= 450){
+    }else if(score < 450){
         score += 20;
-    }else if(score <= 750){
+    }else if(score < 750){
         score += 30;
-    }else if(score <= 1150){
+    }else if(score < 1150){
         score += 40;
-    }else if(score <= 1650){
+    }else if(score < 1650){
         score += 50;
-    }else if(score <= 2650){
+    }else if(score < 2650){
         score += 100;
     }else {
         score += 200;
@@ -176,22 +176,27 @@ function initDelay() {
     TODO 修改延迟时间
  */
 function updateDelay() {
-    if(score <= 50){
+    if(score < 50){
         delay = 500;
-    }else if(score <= 100){
+    }else if(score < 100){
         delay = 450;
-    }else if(score <= 175){
+    }else if(score < 175){
         delay = 400;
-    }else if(score <= 250){
+    }else if(score < 250){
         delay = 350;
-    }else if(score <= 450){
+    }else if(score < 450){
         delay = 300;
-    }else if(score <= 750){
+    }else if(score < 750){
         delay = 250;
-    }else {
+    }else if(score < 950){
         delay = 200;
+    }else if(score < 1150){
+        delay = 200;
+    }else if(score < 1650){
+        delay = 150;
+    }else {
+        delay = 100;
     }
-    console.log(score, delay);
 }
 
 /*
