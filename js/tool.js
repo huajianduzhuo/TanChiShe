@@ -132,3 +132,86 @@ function snackAdd() {
     });
     $('#main').append(newSnack);
 }
+
+/*
+    TODO 更新分数
+ */
+function scoreUpdate() {
+    if(score <= 100){
+        score += 10;
+    }else if(score <= 250){
+        score += 15;
+    }else if(score <= 450){
+        score += 20;
+    }else if(score <= 750){
+        score += 30;
+    }else if(score <= 1150){
+        score += 40;
+    }else if(score <= 1650){
+        score += 50;
+    }else if(score <= 2650){
+        score += 100;
+    }else {
+        score += 200;
+    }
+    $('#score').html(score);
+}
+
+/*
+    TODO 重新计算分数
+ */
+function initScore() {
+    score = 0;
+    $('#score').html(score);
+}
+
+/*
+    TODO 初始化延迟时间
+ */
+function initDelay() {
+    delay = 500;
+}
+
+/*
+    TODO 修改延迟时间
+ */
+function updateDelay() {
+    if(score <= 50){
+        delay = 500;
+    }else if(score <= 100){
+        delay = 450;
+    }else if(score <= 175){
+        delay = 400;
+    }else if(score <= 250){
+        delay = 350;
+    }else if(score <= 450){
+        delay = 300;
+    }else if(score <= 750){
+        delay = 250;
+    }else {
+        delay = 200;
+    }
+    console.log(score, delay);
+}
+
+/*
+    TODO 游戏暂停
+ */
+function pauseGame() {
+    status = 'pause';
+    clearTimeout(t);
+    $("#main").append("<div id='pause' class='pause'><p>游戏暂停</p><a href='javascript:continueGame();' id='continuegamebutton'>Continue</a></div>");
+    var pause = $("#pause");
+    pause.css("width", "300px");
+    pause.css("height", "300px");
+    pause.css("background-color", "rgba(0, 0, 0, 0.5)");
+}
+
+/*
+    TODO 游戏继续
+ */
+function continueGame() {
+    $('#pause').remove();
+    status = 'start';
+    move();
+}

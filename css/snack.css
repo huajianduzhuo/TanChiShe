@@ -2,27 +2,62 @@
     box-sizing: border-box;
 }
 
-#head {
-    width: 300px;
-    text-align: center;
-    margin: 0 auto;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
-#start {
+header {
+    display: block;
+    margin: 0 auto;
+    width: 500px;
+    text-align: center;
+}
+
+header h1 {
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+header #newgamebutton {
+    display: block;
+    margin: 20px auto;
+
     width: 150px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font: 18px bold;
+    padding: 10px 10px;
+    background-color: #8f7a66;
+
+    font-family: Arial;
+    color: white;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+}
+
+header #newgamebutton:hover {
+    background-color: #9f8b77;
+}
+
+header p {
+    font-family: Arial;
+    font-size: 25px;
+    margin: 20px auto;
 }
 
 #main {
-    width: 304px;
-    height: 304px;
-    border: 2px solid slategrey;
+    width: 306px;
+    height: 306px;
+    border: 3px solid slategrey;
     margin: 0 auto;
     position: relative;
-    top: 50px;
+    top: 20px;
     overflow: hidden;
+    background-color: antiquewhite;
 }
 
 .food {
@@ -35,11 +70,74 @@
 .snack {
     width: 10px;
     height: 10px;
-    background-color: palevioletred;
-    border: 1px solid lightslategrey;
+    background-color: red;
     position: absolute;
 }
 
 .snack_head {
     background-color: black;
+}
+
+.gameover {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+}
+
+.gameover p {
+    font-family: Arial;
+    font-size: 40px;
+    color: white;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+.gameover span {
+    font-family: Arial;
+    font-size: 40px;
+    color: white;
+    margin: 20px auto;
+}
+
+#restartgamebutton, #continuegamebutton {
+    display: block;
+    margin: 20px auto;
+    width: 180px;
+    padding: 10px 10px;
+    background-color: #8f7a66;
+    font-family: Arial;
+    font-size: 30px;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+#restartgamebutton:hover, #continuegamebutton:hover {
+    background-color: #9f8b77;
+}
+
+.pause {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+}
+
+.pause p {
+    font-family: Arial;
+    font-size: 40px;
+    color: white;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+#tips {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }

@@ -13,14 +13,8 @@ var status = 'init';
  */
 $(function () {
     initGame();
-    $('#start').click(function () {
-        if(t){
-            clearTimeout(t);
-        }
-        initGame();
-        status = 'init';
-    });
 });
+
 
 function initGame() {
     $('#main').html('<div id="food" class="food"></div><div id="snack_head" name="snack" class="snack snack_head"></div><div id="snack_body" name="snack" class="snack"></div>');

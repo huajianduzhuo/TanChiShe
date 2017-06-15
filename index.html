@@ -11,14 +11,20 @@
     <script src="js/snack.js"></script>
 </head>
 <body>
-    <div id="head">
+    <header>
         <h1>贪吃蛇</h1>
-        <button id="start">开始游戏</button>
-    </div>
+        <a href="javascript:newGame();" id="newgamebutton">New Game</a>
+
+        <p>score: <span id="score">0</span></p>
+    </header>
     <div id="main">
         <div id="food" class="food"></div>
         <div id="snack_head" name="snack" class="snack snack_head"></div>
         <div id="snack_body" name="snack" class="snack"></div>
+    </div>
+    <div id="tips">
+        <p>方向：上下左右 或 wasd</p>
+        <p>暂停/继续：空格键</p>
     </div>
 </body>
 </html>

@@ -6,7 +6,8 @@
  */
 var t;
 var lastSnack = new SNACK();
-var delay = 700;
+var delay = 500;
+var score = 0;
 
 function move() {
     $.each(snackArr, function (index, elem) {
@@ -20,19 +21,22 @@ function move() {
             elem.direction = snackArr[index+1].direction;
         }else {
             if(checkSnackDie(elem)){
-                alert('game over!!!');
+                //alert('game over!!!');
                 status = 'die';
                 clearTimeout(t);
+                gameover();
                 return false;
             }else {
                 if(checkIsEat(elem)){
                     snackAdd();
                     showFood();
+                    while (checkCoorRepeat(food, snackArr)){
+                        showFood();
+                    }
+                    scoreUpdate();
                 }
             }
-            if(delay >= 300){
-                delay = delay - 100 * parseInt(snackArr.length / 10);
-            }
+            updateDelay();
             t = setTimeout(move,delay);
         }
     });
@@ -40,36 +44,69 @@ function move() {
 
 $(document).keydown(function (event) {
     if(status == 'die'){
-        return false;
+        return;
     }
     switch (event.keyCode){
         case 37://left
-            if(snackArr[snackArr.length-1].direction == 'right' || snackArr[snackArr.length-2].direction == 'right'){
-                return false;
+        case 65:
+            if(snackArr[snackArr.length-1].direction == 'right' || snackArr[snackArr.length-2].direction == 'right' || status == 'pause'){
+                return;
             }
             snackArr[snackArr.length-1].direction = 'left';
             break;
         case 38://top
-            if(snackArr[snackArr.length-1].direction == 'bottom' || snackArr[snackArr.length-2].direction == 'bottom'){
-                return false;
+        case 87:
+            if(snackArr[snackArr.length-1].direction == 'bottom' || snackArr[snackArr.length-2].direction == 'bottom' || status == 'pause'){
+                return;
             }
             snackArr[snackArr.length-1].direction = 'top';
             break;
         case 39://right
-            if(snackArr[snackArr.length-1].direction == 'left' || snackArr[snackArr.length-2].direction == 'left'){
-                return false;
+        case 68:
+            if(snackArr[snackArr.length-1].direction == 'left' || snackArr[snackArr.length-2].direction == 'left' || status == 'pause'){
+                return;
             }
             snackArr[snackArr.length-1].direction = 'right';
             break;
         case 40://bottom
-            if(snackArr[snackArr.length-1].direction == 'top' || snackArr[snackArr.length-2].direction == 'top'){
-                return false;
+        case 83:
+            if(snackArr[snackArr.length-1].direction == 'top' || snackArr[snackArr.length-2].direction == 'top' || status == 'pause'){
+                return;
             }
             snackArr[snackArr.length-1].direction = 'bottom';
             break;
+        case 32://空格键
+            if(t && status == 'start'){
+                pauseGame();
+            }else if(status == 'pause'){
+                continueGame();
+            }
+            break;
     }
-    if([37,38,39,40].indexOf(event.keyCode) >= 0 && status == 'init'){
+    if([37,38,39,40,65,87,83,68].indexOf(event.keyCode) >= 0 && status == 'init'){
         status = 'start';
         move();
     }
 });
+
+function gameover() {
+    alert("gameover!");
+    $("#main").append("<div id='gameover' class='gameover'><p>本次得分</p><span>" + score + "</span><a href='javascript:newGame();' id='restartgamebutton'>Restart</a></div>");
+    var gameover = $("#gameover");
+    gameover.css("width", "300px");
+    gameover.css("height", "300px");
+    gameover.css("background-color", "rgba(0, 0, 0, 0.5)");
+}
+
+function newGame() {
+    if(t){
+        clearTimeout(t);
+    }
+    if($('#gameover')){
+        $('#gameover').remove();
+    }
+    initScore();
+    initDelay();
+    initGame();
+    status = 'init';
+}
