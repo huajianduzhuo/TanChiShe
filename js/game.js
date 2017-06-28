@@ -49,6 +49,9 @@ $(document).keydown(function (event) {
     switch (event.keyCode){
         case 37://left
         case 65:
+            if(event.preventDefault){
+                event.preventDefault();
+            }
             if(snackArr[snackArr.length-1].direction == 'right' || snackArr[snackArr.length-2].direction == 'right' || status == 'pause'){
                 return;
             }
@@ -56,6 +59,9 @@ $(document).keydown(function (event) {
             break;
         case 38://top
         case 87:
+            if(event.preventDefault){
+                event.preventDefault();
+            }
             if(snackArr[snackArr.length-1].direction == 'bottom' || snackArr[snackArr.length-2].direction == 'bottom' || status == 'pause'){
                 return;
             }
@@ -63,6 +69,9 @@ $(document).keydown(function (event) {
             break;
         case 39://right
         case 68:
+            if(event.preventDefault){
+                event.preventDefault();
+            }
             if(snackArr[snackArr.length-1].direction == 'left' || snackArr[snackArr.length-2].direction == 'left' || status == 'pause'){
                 return;
             }
@@ -70,12 +79,18 @@ $(document).keydown(function (event) {
             break;
         case 40://bottom
         case 83:
+            if(event.preventDefault){
+                event.preventDefault();
+            }
             if(snackArr[snackArr.length-1].direction == 'top' || snackArr[snackArr.length-2].direction == 'top' || status == 'pause'){
                 return;
             }
             snackArr[snackArr.length-1].direction = 'bottom';
             break;
         case 32://空格键
+            if(event.preventDefault){
+                event.preventDefault();
+            }
             if(t && status == 'start'){
                 pauseGame();
             }else if(status == 'pause'){
