@@ -177,25 +177,25 @@ function initDelay() {
  */
 function updateDelay() {
     if(score < 50){
-        delay = 500;
-    }else if(score < 100){
-        delay = 450;
-    }else if(score < 175){
         delay = 400;
-    }else if(score < 250){
+    }else if(score < 100){
         delay = 350;
-    }else if(score < 450){
+    }else if(score < 175){
         delay = 300;
-    }else if(score < 750){
+    }else if(score < 250){
         delay = 250;
-    }else if(score < 950){
+    }else if(score < 750){
         delay = 200;
     }else if(score < 1150){
-        delay = 200;
-    }else if(score < 1650){
         delay = 150;
-    }else {
+    }else if(score < 1650){
         delay = 100;
+    }else if(score < 3500){
+        delay = 90;
+    }else if(score < 6000){
+        delay = 80;
+    }else {
+        delay = 70;
     }
 }
 

@@ -6,7 +6,7 @@
  */
 var t;
 var lastSnack = new SNACK();
-var delay = 500;
+var delay = 400;
 var score = 0;
 
 function move() {
