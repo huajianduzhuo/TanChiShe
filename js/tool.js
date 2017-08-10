@@ -8,7 +8,7 @@
  */
 function SNACK(snack, left, top, direct) {
     this.snack = snack;
-    snack && this.snack.css('transition', 'transform ' + delay + 'ms');
+    snack && this.snack.css('transition', 'transform ' + delay + 'ms linear');
     this.leftCoor = left;
     this.topCoor = top;
     this.direction = direct;
@@ -193,7 +193,7 @@ function updateDelay() {
     }
     // 更改蛇过渡时间
     $.each(snackArr, function(index, elem) {
-        elem.snack.css('transition', 'transform ' + delay + 'ms');
+        elem.snack.css('transition', 'transform ' + delay + 'ms linear');
     });
 }
 
