@@ -11,7 +11,7 @@ var status = 'init';
 /*
     TODO 初始化游戏
  */
-$(function () {
+$(function() {
     initGame();
 });
 
@@ -21,7 +21,7 @@ function initGame() {
     food = showFood();
     snackArr = [];
     showSnack();
-    while (checkCoorRepeat(food, snackArr) || (!checkSnackLive())){
+    while (checkCoorRepeat(food, snackArr) || (!checkSnackLive())) {
         snackArr = new Array(0);
         showSnack();
     }
@@ -30,50 +30,41 @@ function initGame() {
 function showFood() {
     var food = $('#food');
     var foodCoor = getCoordinate();
-    food.css({
-        left: foodCoor.left,
-        top: foodCoor.top
-    });
+    transformCSS(food[0], 'translateX', foodCoor.left);
+    transformCSS(food[0], 'translateY', foodCoor.top);
     return food;
 }
 
 function showSnack() {
     var snack_head = $('#snack_head');
     var snack_head_coor = getCoordinate();
-    snack_head.css({
-        left: snack_head_coor.left,
-        top: snack_head_coor.top
-    });
+    transformCSS(snack_head[0], 'translateX', snack_head_coor.left);
+    transformCSS(snack_head[0], 'translateY', snack_head_coor.top);
     var direct = getDirect();
     var snack_body = $('#snack_body');
-    switch (direct){
+    switch (direct) {
         case 'left':
-            snack_body.css({
-                left: snack_head_coor.left + 10,
-                top: snack_head_coor.top
-            });
+            transformCSS(snack_body[0], 'translateX', (snack_head_coor.left + 10));
+            transformCSS(snack_body[0], 'translateY', snack_head_coor.top);
             break;
         case 'right':
-            snack_body.css({
-                left: snack_head_coor.left - 10,
-                top: snack_head_coor.top
-            });
+            transformCSS(snack_body[0], 'translateX', (snack_head_coor.left - 10));
+            transformCSS(snack_body[0], 'translateY', snack_head_coor.top);
             break;
         case 'top':
-            snack_body.css({
-                left: snack_head_coor.left,
-                top: snack_head_coor.top + 10
-            });
+            transformCSS(snack_body[0], 'translateX', snack_head_coor.left);
+            transformCSS(snack_body[0], 'translateY', (snack_head_coor.top + 10));
             break;
         case 'bottom':
-            snack_body.css({
-                left: snack_head_coor.left,
-                top: snack_head_coor.top - 10
-            });
+            transformCSS(snack_body[0], 'translateX', snack_head_coor.left);
+            transformCSS(snack_body[0], 'translateY', (snack_head_coor.top - 10));
             break;
     }
-    var snackHead = new SNACK(snack_head, snack_head_coor.left, snack_head_coor.top, direct);
-    var snackBody = new SNACK(snack_body, parseInt(snack_body.css('left')), parseInt(snack_body.css('top')), direct);
-    snackArr.push(snackBody);
-    snackArr.push(snackHead);
+    setTimeout(function() {
+        var snackHead = new SNACK(snack_head, snack_head_coor.left, snack_head_coor.top, direct);
+        var snackBody = new SNACK(snack_body, transformCSS(snack_body[0], 'translateX'), transformCSS(snack_body[0], 'translateY'), direct);
+        snackArr.push(snackBody);
+        snackArr.push(snackHead);
+    }, 0);
+
 }

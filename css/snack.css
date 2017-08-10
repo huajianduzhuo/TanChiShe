@@ -2,7 +2,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -26,16 +27,12 @@ header h1 {
 header #newgamebutton {
     display: block;
     margin: 20px auto;
-
     width: 150px;
     padding: 10px 10px;
     background-color: #8f7a66;
-
     font-family: Arial;
     color: white;
-
     border-radius: 10px;
-
     text-decoration: none;
 }
 
@@ -61,18 +58,23 @@ header p {
 }
 
 .food {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 10px;
     height: 10px;
     background-color: dimgrey;
-    position: absolute;
 }
 
 .snack {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 10px;
     height: 10px;
     background-color: red;
-    position: absolute;
     border-radius: 3px;
+    transition: transform 0s;
 }
 
 .snack_head {
@@ -104,7 +106,8 @@ header p {
     margin: 20px auto;
 }
 
-#restartgamebutton, #continuegamebutton {
+#restartgamebutton,
+#continuegamebutton {
     display: block;
     margin: 20px auto;
     width: 180px;
@@ -117,7 +120,8 @@ header p {
     text-decoration: none;
 }
 
-#restartgamebutton:hover, #continuegamebutton:hover {
+#restartgamebutton:hover,
+#continuegamebutton:hover {
     background-color: #9f8b77;
 }
 
