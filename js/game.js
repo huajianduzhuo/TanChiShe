@@ -35,6 +35,7 @@ function move() {
                 return false;
             } else {
                 if (checkIsEat(elem)) {
+                    play();
                     snackAdd();
                     showFood();
                     while (checkCoorRepeat(food, snackArr)) {

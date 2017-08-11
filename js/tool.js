@@ -228,3 +228,11 @@ function continueGame() {
     status = 'start';
     move();
 }
+
+/*
+    play audio
+*/
+function play() {
+    var audio = document.getElementById('audio');
+    audio.play();
+}
